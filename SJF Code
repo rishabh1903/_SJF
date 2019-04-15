@@ -23,3 +23,10 @@ main()
                 burst[j]=temp;
             }
         }
+     awt=(float)totwt/n;
+    ata=(float)totta/n;
+    printf("\nProcessname\tArrival time\tburst time\tWaiting time\tTurnaound time");
+    for(i=0; i<n; i++)
+    printf("\n%s\t\t%d\t\t%d\t\t%d\t\t%d",processname[i],arrival[i],burst[i],waiting[i],turnaround[i]);
+    printf("\nAverage waiting time is:%f",awt);
+    printf("\nAverage turnaroundtime is:%f",ata);
