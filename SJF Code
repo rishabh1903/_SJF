@@ -10,3 +10,16 @@ main()
         printf("Enter process name, arrival time& execution time:");
         scanf("%s%d%d",&processname[i],&arrival[i],&burst[i]);
     }
+        for(i=0; i<n; i++)
+        for(j=0; j<n; j++)
+        {
+            if(burst[i]<burst[j])
+            {
+                temp=arrival[i];
+                arrival[i]=arrival[j];
+                arrival[j]=temp;
+                temp=burst[i];
+                burst[i]=burst[j];
+                burst[j]=temp;
+            }
+        }
