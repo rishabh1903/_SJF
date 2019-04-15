@@ -1,0 +1,12 @@
+#include<stdio.h>
+main()
+{
+    int burst[20],arrival[10],n,i,j,temp,st[10],ft[10],waiting[10],turnaround[10];
+    int totwt=0,totta=0;
+    printf("Enter the number of process:");
+    scanf("%d",&n);
+    for(i=0; i<n; i++)
+    {
+        printf("Enter process name, arrival time& execution time:");
+        scanf("%s%d%d",&processname[i],&arrival[i],&burst[i]);
+    }
