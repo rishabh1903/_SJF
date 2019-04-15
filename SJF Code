@@ -13,30 +13,30 @@ main()
     start = clock();
     printf("Enter the number of process:");
     scanf("%d",&n);
-    for(i=0; i<n; i++)    //Complexity n
+    for(i=0;i<n;i++)    //Complexity n
     {
         printf("Enter process name, arrival time& execution time:");
         scanf("%s%d%d",&processname[i],&arrival[i],&burst[i]);
     }
-    for(i=0; i<n; i++)	//Complexity n^2
+    for(i=0;i<n;i++)	//Complexity n^2
 	{
-		for(j=0; j<n; j++)
-        {
-            if(burst[i]<burst[j])
-            {
-                temp=arrival[i];
-                arrival[i]=arrival[j];
-                arrival[j]=temp;
-                temp=burst[i];
-                burst[i]=burst[j];
-                burst[j]=temp;
-                strcpy(t,processname[i]);
-                strcpy(processname[i],processname[j]);
-                strcpy(processname[j],t);
-            }
-        }
+	for(j=0;j<n;j++)
+        	{
+            	if(burst[i]<burst[j])
+            	{
+                	temp=arrival[i];
+                	arrival[i]=arrival[j];
+                	arrival[j]=temp;
+                	temp=burst[i];
+                	burst[i]=burst[j];
+                	burst[j]=temp;
+                	strcpy(t,processname[i]);
+                	strcpy(processname[i],processname[j]);
+                	strcpy(processname[j],t);
+            	}
+        	}
 	}
-	for(i=0; i<n; i++) //Complexity n
+    for(i=0;i<n;i++) //Complexity n
     {
         if(i==0)
             st[i]=arrival[i];
@@ -55,7 +55,7 @@ main()
     printf("\n%s\t\t%d\t\t%d\t\t%d\t\t%d",processname[i],arrival[i],burst[i],waiting[i],turnaround[i]);
     printf("\nAverage Waiting Time is:%f",awt);
     printf("\nAverage Turnaround Time is:%f",ata);
-    end = clock();
-    cpu_time_used += ((double) (end - start))/CLOCKS_PER_SEC;
+    end=clock();
+    cpu_time_used +=((double)(end - start))/CLOCKS_PER_SEC;
     printf("\nTime used to execute the program (in millisecond) is:%f",cpu_time_used);		//Total_Complexity n^2
 }
