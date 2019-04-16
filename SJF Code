@@ -2,49 +2,51 @@
 #include<conio.h>
 #include<string.h>
 #include<time.h>
+#include<stdlib.h>
 main()
 {
 	float awt,ata;
 	char processname[10][10],t[10];
     int totwt=0,totta=0;
-	int burst[20],arrival[10],n,i,j,temp,st[10],ft[10],waiting[10],turnaround[10];
+	int burst[20],arrival[10],n,i,j,temp,a[10],b[10],waiting[10],turnaround[10];
 	clock_t start, end;
     double cpu_time_used;
     start = clock();
     printf("Enter the number of process:");
     scanf("%d",&n);
+    
     for(i=0;i<n;i++)    //Complexity n
     {
-        printf("Enter process name, arrival time& execution time:");
+        printf("Enter process name, Arrival time & Burst time:");
         scanf("%s%d%d",&processname[i],&arrival[i],&burst[i]);
     }
     for(i=0;i<n;i++)	//Complexity n^2
 	{
-	for(j=0;j<n;j++)
-        	{
-            	if(burst[i]<burst[j])
-            	{
-                	temp=arrival[i];
-                	arrival[i]=arrival[j];
-                	arrival[j]=temp;
-                	temp=burst[i];
-                	burst[i]=burst[j];
-                	burst[j]=temp;
-                	strcpy(t,processname[i]);
-                	strcpy(processname[i],processname[j]);
-                	strcpy(processname[j],t);
-            	}
-        	}
+		for(j=0;j<n;j++)
+        {
+            if(burst[i]<burst[j])
+            {
+                temp=arrival[i];
+                arrival[i]=arrival[j];
+                arrival[j]=temp;
+                temp=burst[i];
+                burst[i]=burst[j];
+                burst[j]=temp;
+                strcpy(t,processname[i]);
+                strcpy(processname[i],processname[j]);
+                strcpy(processname[j],t);
+            }
+        }
 	}
-    for(i=0;i<n;i++) //Complexity n
+	for(i=0;i<n;i++) //Complexity n
     {
         if(i==0)
-            st[i]=arrival[i];
+            a[i]=arrival[i];
         else
-        st[i]=ft[i-1];
-        waiting[i]=st[i]-arrival[i];
-        ft[i]=st[i]+burst[i];
-        turnaround[i]=ft[i]-arrival[i];
+        a[i]=b[i-1];
+        waiting[i]=a[i]-arrival[i];
+        b[i]=a[i]+burst[i];
+        turnaround[i]=b[i]-arrival[i];
         totwt+=waiting[i];
         totta+=turnaround[i];
     }
@@ -53,8 +55,8 @@ main()
     printf("\nProcess Name\tArrival Time\tBurst Time\tWaiting Time\tTurnaound Time");
     for(i=0; i<n; i++)
     printf("\n%s\t\t%d\t\t%d\t\t%d\t\t%d",processname[i],arrival[i],burst[i],waiting[i],turnaround[i]);
-    printf("\nAverage Waiting Time is:%f",awt);
-    printf("\nAverage Turnaround Time is:%f",ata);
+    printf("\nAverage Waiting Time is (in millisecond):%f",awt);
+    printf("\nAverage Turnaround Time is(in millisecond):%f",ata);
     end=clock();
     cpu_time_used +=((double)(end - start))/CLOCKS_PER_SEC;
     printf("\nTime used to execute the program (in millisecond) is:%f",cpu_time_used);		//Total_Complexity n^2
